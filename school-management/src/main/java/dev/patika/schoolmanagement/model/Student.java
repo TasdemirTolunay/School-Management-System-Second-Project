@@ -1,8 +1,10 @@
-package dev.patika.schoolmanagement.Entity;
+package dev.patika.schoolmanagement.model;
+
 
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +15,21 @@ import java.util.List;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Instructor {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String instructorName;
-    private String instructorPhoneNumber;
+    private String studentName;
+    private LocalDate studentBirthDate;
+    private String Gender;
+
+    @ManyToMany(mappedBy = "students")
+    private List<Course> courses = new ArrayList<>();
 
     @ManyToOne
     private Address address;
 
-    @OneToMany(mappedBy = "instructor")
-    private List<Course> courseList = new ArrayList<>();
+
 }

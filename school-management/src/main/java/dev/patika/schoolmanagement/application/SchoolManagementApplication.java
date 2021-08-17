@@ -1,4 +1,4 @@
-package dev.patika.schoolmanagement.Application;
+package dev.patika.schoolmanagement.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

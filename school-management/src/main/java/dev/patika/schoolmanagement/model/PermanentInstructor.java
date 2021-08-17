@@ -1,4 +1,4 @@
-package dev.patika.schoolmanagement.Entity;
+package dev.patika.schoolmanagement.model;
 
 import lombok.*;
 
