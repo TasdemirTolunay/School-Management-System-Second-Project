@@ -13,8 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @EqualsAndHashCode
+@ToString
 public class Student {
 
     @Id
@@ -23,7 +23,7 @@ public class Student {
 
     private String studentName;
     private LocalDate studentBirthDate;
-    private String Gender;
+    private String studentGender;
 
     @ManyToMany(mappedBy = "students")
     private List<Course> courses = new ArrayList<>();
