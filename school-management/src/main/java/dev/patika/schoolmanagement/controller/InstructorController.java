@@ -57,7 +57,7 @@ public class InstructorController {
 
     }
 
-    @PutMapping("/save/{id}")
+    @PutMapping("/update/{id}")
     public void instructorUpdate(@RequestBody Instructor instructor, @PathVariable int id){
 
         instructorService.updateInstructor(instructor, id);
