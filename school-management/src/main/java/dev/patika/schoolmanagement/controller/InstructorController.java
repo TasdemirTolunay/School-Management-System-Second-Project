@@ -1,8 +1,6 @@
 package dev.patika.schoolmanagement.controller;
 
-import dev.patika.schoolmanagement.model.Address;
-import dev.patika.schoolmanagement.model.Course;
-import dev.patika.schoolmanagement.model.Instructor;
+import dev.patika.schoolmanagement.model.*;
 import dev.patika.schoolmanagement.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,10 +48,17 @@ public class InstructorController {
 
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<Instructor> instructorSave(@RequestBody Instructor instructor){
+    @PostMapping("/save/permanent")
+    public ResponseEntity<Instructor> permanentInstructorSave(@RequestBody PermanentInstructor instructor){
 
-        return new ResponseEntity<>(instructorService.saveInstructor(instructor),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(instructorService.savePermanentInstructor(instructor),HttpStatus.ACCEPTED);
+
+    }
+
+    @PostMapping("/save/visiting")
+    public ResponseEntity<Instructor> visitingInstructorSave(@RequestBody VisitingResearcher instructor){
+
+        return new ResponseEntity<>(instructorService.saveVisitingInstructor(instructor),HttpStatus.ACCEPTED);
 
     }
 
@@ -62,6 +67,13 @@ public class InstructorController {
 
         instructorService.updateInstructor(instructor, id);
         System.out.println("Data Updated.......");
+
+    }
+
+    @PutMapping("/set/address/{instructorId}/{addressId}")
+    public void setAddressInstructor(@PathVariable int instructorId, @PathVariable int addressId){
+
+        instructorService.setAddressOfInstructor(instructorId,addressId);
 
     }
 
@@ -80,6 +92,5 @@ public class InstructorController {
         System.out.println("id = " + id + " ,Data Deleted.....");
 
     }
-
 
 }

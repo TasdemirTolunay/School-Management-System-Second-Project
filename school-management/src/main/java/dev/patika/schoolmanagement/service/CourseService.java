@@ -4,6 +4,8 @@ import dev.patika.schoolmanagement.model.Course;
 import dev.patika.schoolmanagement.model.Instructor;
 import dev.patika.schoolmanagement.model.Student;
 import dev.patika.schoolmanagement.repository.CourseRepository;
+import dev.patika.schoolmanagement.repository.InstructorRepository;
+import dev.patika.schoolmanagement.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,17 @@ public class CourseService {
 
     CourseRepository courseRepository;
 
+    StudentRepository studentRepository;
+
+    InstructorRepository instructorRepository;
+
     @Autowired
-    public CourseService(CourseRepository courseRepository) {
+    public CourseService(CourseRepository courseRepository, StudentRepository studentRepository, InstructorRepository instructorRepository) {
+
         this.courseRepository = courseRepository;
+        this.studentRepository = studentRepository;
+        this.instructorRepository =instructorRepository;
+
     }
 
     public List<Course> courseList(){
@@ -70,4 +80,23 @@ public class CourseService {
         return findCourseById(id).getInstructor();
 
     }
+
+    public void setStudentOfCourse(int courseId, int studentId){
+
+        Student findStudent = studentRepository.findById(studentId).get();
+        Course findCourse = findCourseById(courseId);
+        findCourse.getStudents().add(findStudent);
+        courseRepository.save(findCourse);
+
+    }
+
+    public void setInstructorOfCourse(int courseId, int instructorId){
+
+        Instructor findInstructor = instructorRepository.findById(instructorId).get();
+        Course findCourse = findCourseById(courseId);
+        findCourse.setInstructor(findInstructor);
+        courseRepository.save(findCourse);
+
+    }
+
 }

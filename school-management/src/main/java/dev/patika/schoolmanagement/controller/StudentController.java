@@ -64,6 +64,13 @@ public class StudentController {
 
     }
 
+    @PutMapping("/set/address/{studentId}/{addressId}")
+    public void setAddressStudent(@PathVariable int studentId, @PathVariable int addressId){
+
+        studentService.setAddressOfStudent(studentId,addressId);
+
+    }
+
     @DeleteMapping("/delete")
     public void deleteStudentOfObject(@RequestBody Student student){
 

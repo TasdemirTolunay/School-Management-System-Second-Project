@@ -1,8 +1,7 @@
 package dev.patika.schoolmanagement.service;
 
-import dev.patika.schoolmanagement.model.Address;
-import dev.patika.schoolmanagement.model.Course;
-import dev.patika.schoolmanagement.model.Instructor;
+import dev.patika.schoolmanagement.model.*;
+import dev.patika.schoolmanagement.repository.AddressRepository;
 import dev.patika.schoolmanagement.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +13,14 @@ public class InstructorService {
 
     InstructorRepository instructorRepository;
 
+    AddressRepository addressRepository;
+
     @Autowired
-    public InstructorService(InstructorRepository instructorRepository) {
+    public InstructorService(InstructorRepository instructorRepository, AddressRepository addressRepository) {
+
         this.instructorRepository = instructorRepository;
+        this.addressRepository = addressRepository;
+
     }
 
     public List<Instructor> instructorList(){
@@ -31,7 +35,13 @@ public class InstructorService {
 
     }
 
-    public Instructor saveInstructor(Instructor instructor){
+    public Instructor savePermanentInstructor(PermanentInstructor instructor){
+
+        return instructorRepository.save(instructor);
+
+    }
+
+    public Instructor saveVisitingInstructor(VisitingResearcher instructor){
 
         return instructorRepository.save(instructor);
 
@@ -67,6 +77,15 @@ public class InstructorService {
     public Address addressOfInstructor(int id){
 
         return findInstructorById(id).getAddress();
+
+    }
+
+    public void setAddressOfInstructor(int instructorId, int addressId){
+
+        Address findAddress = addressRepository.findById(addressId).get();
+        Instructor findInstructor = findInstructorById(instructorId);
+        findInstructor.setAddress(findAddress);
+        instructorRepository.save(findInstructor);
 
     }
 

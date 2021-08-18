@@ -66,6 +66,20 @@ public class CourseController {
 
     }
 
+    @PutMapping("/set/student/{courseId}/{studentId}")
+    public void setStudentCourse(@PathVariable int courseId,@PathVariable int studentId){
+
+        courseService.setStudentOfCourse(courseId,studentId);
+
+    }
+
+    @PutMapping("/set/instructor/{courseId}/{instructorId}")
+    public void setInstructorCourse(@PathVariable int courseId, @PathVariable int instructorId){
+
+        courseService.setInstructorOfCourse(courseId,instructorId);
+
+    }
+
     @DeleteMapping("/delete")
     public void deleteCourse(@RequestBody Course course){
 
@@ -79,6 +93,5 @@ public class CourseController {
         courseService.deleteCourseById(id);
 
     }
-
 
 }

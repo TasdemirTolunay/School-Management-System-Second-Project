@@ -3,12 +3,12 @@ package dev.patika.schoolmanagement.service;
 import dev.patika.schoolmanagement.model.Address;
 import dev.patika.schoolmanagement.model.Course;
 import dev.patika.schoolmanagement.model.Student;
+import dev.patika.schoolmanagement.repository.AddressRepository;
 import dev.patika.schoolmanagement.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -16,9 +16,13 @@ public class StudentService {
 
     StudentRepository studentRepository;
 
+    AddressRepository addressRepository;
+
     @Autowired
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(StudentRepository studentRepository, AddressRepository addressRepository) {
+
         this.studentRepository = studentRepository;
+        this.addressRepository =addressRepository;
     }
 
     public List<Student> findAllStudent(){
@@ -70,6 +74,15 @@ public class StudentService {
     public Address findAddressOfStudent(int id){
 
         return findStudentById(id).getAddress();
+
+    }
+
+    public void setAddressOfStudent(int studentId, int addressId){
+
+        Address findAddress = addressRepository.findById(addressId).get();
+        Student findStudent = findStudentById(studentId);
+        findStudent.setAddress(findAddress);
+        studentRepository.save(findStudent);
 
     }
 
