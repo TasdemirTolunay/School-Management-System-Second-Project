@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+//Entity class
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,14 +23,17 @@ import java.util.List;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Student {
 
+    //This class have Primary key
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    //Variables
     private String studentName;
     private LocalDate studentBirthDate;
     private String studentGender;
 
+    //Relations with other classes
     @ManyToMany(mappedBy = "students")
     private List<Course> courses = new ArrayList<>();
 

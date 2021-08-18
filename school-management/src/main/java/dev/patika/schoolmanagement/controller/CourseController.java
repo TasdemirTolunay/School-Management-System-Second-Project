@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Controller class
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -24,6 +25,7 @@ public class CourseController {
 
     }
 
+    //Shows the course list
     @GetMapping("/list")
     public ResponseEntity<List<Course>> findAllCourses(){
 
@@ -31,6 +33,7 @@ public class CourseController {
 
     }
 
+    //Shows the course of the entered ID
     @GetMapping("/{id}")
     public ResponseEntity<Course> findCourseById(@PathVariable int id){
 
@@ -38,6 +41,7 @@ public class CourseController {
 
     }
 
+    //Shows students registered to the course with the entered ID
     @GetMapping("/students/{id}")
     public ResponseEntity<List<Student>> studentsOfCourse(@PathVariable int id){
 
@@ -45,6 +49,7 @@ public class CourseController {
 
     }
 
+    //Shows instructors registered to the course with the entered ID
     @GetMapping("/instructor/{id}")
     public ResponseEntity<Instructor> instructorOfCourse(@PathVariable int id){
 
@@ -52,6 +57,7 @@ public class CourseController {
 
     }
 
+    //New course information is created
     @PostMapping("/save")
     public ResponseEntity<Course> saveCourse(@RequestBody Course course){
 
@@ -59,6 +65,7 @@ public class CourseController {
 
     }
 
+    //Course information update of the entered ID
     @PutMapping("/update/{id}")
     public void updateCourse(@RequestBody Course course, @PathVariable int id){
 
@@ -66,6 +73,7 @@ public class CourseController {
 
     }
 
+    //Assigns the student to a course
     @PutMapping("/set/student/{courseId}/{studentId}")
     public void setStudentCourse(@PathVariable int courseId,@PathVariable int studentId){
 
@@ -73,6 +81,7 @@ public class CourseController {
 
     }
 
+    ////Assigns the instructor to a course
     @PutMapping("/set/instructor/{courseId}/{instructorId}")
     public void setInstructorCourse(@PathVariable int courseId, @PathVariable int instructorId){
 
@@ -80,6 +89,7 @@ public class CourseController {
 
     }
 
+    //Delete course information
     @DeleteMapping("/delete")
     public void deleteCourse(@RequestBody Course course){
 
@@ -87,6 +97,7 @@ public class CourseController {
 
     }
 
+    //Delete course information with id
     @DeleteMapping("/delete/{id}")
     public void deleteCourseById(@PathVariable int id){
 

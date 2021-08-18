@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Controller class
 @RestController
 @RequestMapping("/instructor")
 public class InstructorController {
@@ -20,6 +21,7 @@ public class InstructorController {
         this.instructorService = instructorService;
     }
 
+    //Shows the instructor list
     @GetMapping("/list")
     public ResponseEntity<List<Instructor>> allInstructor(){
 
@@ -27,6 +29,7 @@ public class InstructorController {
 
     }
 
+    //Shows the instructor of the entered ID
     @GetMapping("/{id}")
     public ResponseEntity<Instructor> findInstructorById(@PathVariable int id){
 
@@ -34,6 +37,7 @@ public class InstructorController {
 
     }
 
+    //Shows courses registered to the instructor with the entered ID
     @GetMapping("/courses/{id}")
     public ResponseEntity<List<Course>> coursesOfInstructor(@PathVariable int id){
 
@@ -41,6 +45,7 @@ public class InstructorController {
 
     }
 
+    //Shows address registered to the instructor with the entered ID
     @GetMapping("/address/{id}")
     public ResponseEntity<Address> addressOfInstructor(@PathVariable int id){
 
@@ -48,6 +53,7 @@ public class InstructorController {
 
     }
 
+    //New visiting instructor information is created
     @PostMapping("/save/permanent")
     public ResponseEntity<Instructor> permanentInstructorSave(@RequestBody PermanentInstructor instructor){
 
@@ -55,6 +61,7 @@ public class InstructorController {
 
     }
 
+    //New permanent instructor information is created
     @PostMapping("/save/visiting")
     public ResponseEntity<Instructor> visitingInstructorSave(@RequestBody VisitingResearcher instructor){
 
@@ -62,6 +69,7 @@ public class InstructorController {
 
     }
 
+    //Instructor information update of the entered ID
     @PutMapping("/update/{id}")
     public void instructorUpdate(@RequestBody Instructor instructor, @PathVariable int id){
 
@@ -70,6 +78,7 @@ public class InstructorController {
 
     }
 
+    //Assigns the address to a instructor
     @PutMapping("/set/address/{instructorId}/{addressId}")
     public void setAddressInstructor(@PathVariable int instructorId, @PathVariable int addressId){
 
@@ -77,6 +86,7 @@ public class InstructorController {
 
     }
 
+    //Delete instructor information
     @DeleteMapping("/delete")
     public void instructorDelete(@RequestBody Instructor instructor){
 
@@ -85,6 +95,7 @@ public class InstructorController {
 
     }
 
+    //Delete instructor information with id
     @DeleteMapping("/delete/{id}")
     public void instructorDeleteWithId(@PathVariable int id){
 

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 
+//This class is a subclass of the instructor class
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,5 +13,7 @@ import javax.persistence.Entity;
 @ToString
 public class PermanentInstructor extends Instructor{
 
+    //Variables
     private double fixedSalary;
+
 }

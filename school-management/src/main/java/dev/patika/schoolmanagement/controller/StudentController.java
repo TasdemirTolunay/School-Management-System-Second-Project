@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+//Controller class
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -22,6 +23,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    //Shows the student list
     @GetMapping("/list")
     public ResponseEntity<List<Student>> findAllStudent(){
 
@@ -29,6 +31,7 @@ public class StudentController {
 
     }
 
+    //Shows the student of the entered ID
     @GetMapping("/{id}")
     public ResponseEntity<Student> findStudentById(@PathVariable int id){
 
@@ -36,6 +39,7 @@ public class StudentController {
 
     }
 
+    //Shows courses registered to the student with the entered ID
     @GetMapping("/courses/{id}")
     public ResponseEntity<List<Course>> findCoursesOfStudent(@PathVariable int id){
 
@@ -43,6 +47,7 @@ public class StudentController {
 
     }
 
+    //Shows address registered to the student with the entered ID
     @GetMapping("/address/{id}")
     public ResponseEntity<Address> findAddressOfStudent(@PathVariable int id){
 
@@ -50,6 +55,7 @@ public class StudentController {
 
     }
 
+    //New student information is created
     @PostMapping("/save")
     public ResponseEntity<Student> saveStudent(@RequestBody Student student){
 
@@ -57,6 +63,7 @@ public class StudentController {
 
     }
 
+    //Student information update of the entered ID
     @PutMapping("/update/{id}")
     public void updateToStudent(@RequestBody Student student, @PathVariable int id){
 
@@ -64,6 +71,7 @@ public class StudentController {
 
     }
 
+    //Assigns the address to a student
     @PutMapping("/set/address/{studentId}/{addressId}")
     public void setAddressStudent(@PathVariable int studentId, @PathVariable int addressId){
 
@@ -71,6 +79,7 @@ public class StudentController {
 
     }
 
+    //Delete student information
     @DeleteMapping("/delete")
     public void deleteStudentOfObject(@RequestBody Student student){
 
@@ -78,6 +87,7 @@ public class StudentController {
 
     }
 
+    //Delete student information with id
     @DeleteMapping("/delete/{id}")
     public void deleteStudentById(@PathVariable int id){
 

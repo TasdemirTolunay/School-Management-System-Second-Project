@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//This class contains methods of transaction on the course.
 @Service
 public class CourseService {
 

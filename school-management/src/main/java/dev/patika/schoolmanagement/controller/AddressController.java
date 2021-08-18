@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Controller class
 @RestController
 @RequestMapping("/address")
 public class AddressController {
@@ -22,6 +23,7 @@ public class AddressController {
         this.addressService = addressService;
     }
 
+    //Shows the address list
     @GetMapping("/list")
     public ResponseEntity<List<Address>> allAddress(){
 
@@ -29,6 +31,7 @@ public class AddressController {
 
     }
 
+    //Shows the address of the entered ID
     @GetMapping("/{id}")
     public ResponseEntity<Address> addressById(@PathVariable int id){
 
@@ -36,6 +39,7 @@ public class AddressController {
 
     }
 
+    //Shows students registered to the address with the entered ID
     @GetMapping("/students/{id}")
     public ResponseEntity<List<Student>> addressStudents(@PathVariable int id){
 
@@ -43,12 +47,14 @@ public class AddressController {
 
     }
 
+    //Shows instructors registered to the address with the entered ID
     @GetMapping("/instructors/{id}")
     public ResponseEntity<List<Instructor>> addressInstructor(@PathVariable int id){
 
         return new ResponseEntity<>(addressService.instructorOfAddress(id),HttpStatus.ACCEPTED);
     }
 
+    //New address information is created
     @PostMapping("/save")
     public ResponseEntity<Address> addressSave(@RequestBody Address address){
 
@@ -56,6 +62,7 @@ public class AddressController {
 
     }
 
+    //Address information update of the entered ID
     @PutMapping("/update/{id}")
     public void addressUpdate(@RequestBody Address address, @PathVariable int id){
 
@@ -64,6 +71,7 @@ public class AddressController {
 
     }
 
+    //Delete address information
     @DeleteMapping("/delete")
     public void addressDelete(@RequestBody Address address){
 
@@ -72,6 +80,7 @@ public class AddressController {
 
     }
 
+    //Delete address information with id
     @DeleteMapping("/delete/{id}")
     public void addressDeleteWithId(@PathVariable int id){
 
