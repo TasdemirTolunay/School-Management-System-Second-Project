@@ -1,7 +1,11 @@
 package dev.patika.schoolmanagement.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerator;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.springframework.cglib.core.KeyFactory;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,6 +19,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @ToString
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Student {
 
     @Id
