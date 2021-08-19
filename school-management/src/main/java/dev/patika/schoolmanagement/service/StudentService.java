@@ -7,6 +7,7 @@ import dev.patika.schoolmanagement.repository.AddressRepository;
 import dev.patika.schoolmanagement.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,9 +15,9 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    StudentRepository studentRepository;
+    private StudentRepository studentRepository;
 
-    AddressRepository addressRepository;
+    private AddressRepository addressRepository;
 
     @Autowired
     public StudentService(StudentRepository studentRepository, AddressRepository addressRepository) {
@@ -33,35 +34,35 @@ public class StudentService {
 
     public Student findStudentById(int id){
 
-        return  studentRepository.findById(id).get();
+        return (Student) studentRepository.findById(id);
 
     }
 
+    @Transactional
     public Student saveStudent(Student student){
 
-        return studentRepository.save(student);
+        return (Student) studentRepository.save(student);
 
     }
 
+    @Transactional
     public void deleteStudent(Student student){
 
         studentRepository.delete(student);
 
     }
 
+    @Transactional
     public void deleteStudentById(int id){
 
         studentRepository.deleteById(id);
 
     }
 
+    @Transactional
     public void updateStudent(Student student, int id){
 
-        Student findStudent = findStudentById(id);
-        findStudent.setStudentName(student.getStudentName());
-        findStudent.setStudentGender(student.getStudentGender());
-        findStudent.setStudentBirthDate(student.getStudentBirthDate());
-        studentRepository.save(findStudent);
+        studentRepository.update(student,id);
 
     }
 
@@ -79,10 +80,10 @@ public class StudentService {
 
     public void setAddressOfStudent(int studentId, int addressId){
 
-        Address findAddress = addressRepository.findById(addressId).get();
+        Address findAddress = (Address) addressRepository.findById(addressId);
         Student findStudent = findStudentById(studentId);
         findStudent.setAddress(findAddress);
-        studentRepository.save(findStudent);
+        studentRepository.update(findStudent, studentId);
 
     }
 

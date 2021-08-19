@@ -5,6 +5,7 @@ import dev.patika.schoolmanagement.repository.AddressRepository;
 import dev.patika.schoolmanagement.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,37 +33,39 @@ public class InstructorService {
 
     public Instructor findInstructorById(int id){
 
-        return instructorRepository.findById(id).get();
+        return (Instructor) instructorRepository.findById(id);
 
     }
 
+    @Transactional
     public Instructor savePermanentInstructor(PermanentInstructor instructor){
 
-        return instructorRepository.save(instructor);
+        return (Instructor) instructorRepository.save(instructor);
 
     }
 
+    @Transactional
     public Instructor saveVisitingInstructor(VisitingResearcher instructor){
 
-        return instructorRepository.save(instructor);
+        return (Instructor) instructorRepository.save(instructor);
 
     }
 
+    @Transactional
     public void updateInstructor(Instructor instructor, int id){
 
-        Instructor findInstructor = findInstructorById(id);
-        findInstructor.setInstructorName(instructor.getInstructorName());
-        findInstructor.setInstructorPhoneNumber(instructor.getInstructorPhoneNumber());
-        instructorRepository.save(findInstructor);
+        instructorRepository.update(instructor, id);
 
     }
 
+    @Transactional
     public void deleteInstructor(Instructor instructor){
 
         instructorRepository.delete(instructor);
 
     }
 
+    @Transactional
     public void deleteInstructorById(int id){
 
         instructorRepository.deleteById(id);
@@ -81,12 +84,13 @@ public class InstructorService {
 
     }
 
+    @Transactional
     public void setAddressOfInstructor(int instructorId, int addressId){
 
-        Address findAddress = addressRepository.findById(addressId).get();
+        Address findAddress = (Address) addressRepository.findById(addressId);
         Instructor findInstructor = findInstructorById(instructorId);
         findInstructor.setAddress(findAddress);
-        instructorRepository.save(findInstructor);
+        instructorRepository.update(findInstructor, instructorId);
 
     }
 

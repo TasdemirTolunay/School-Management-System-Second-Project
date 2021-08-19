@@ -8,6 +8,7 @@ import dev.patika.schoolmanagement.repository.InstructorRepository;
 import dev.patika.schoolmanagement.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,35 +39,35 @@ public class CourseService {
 
     public Course findCourseById(int id){
 
-        return courseRepository.findById(id).get();
+        return (Course) courseRepository.findById(id);
 
     }
 
+    @Transactional
     public Course saveCourse(Course course){
 
-        return courseRepository.save(course);
+        return (Course) courseRepository.save(course);
 
     }
 
+    @Transactional
     public void deleteCourse(Course course){
 
         courseRepository.delete(course);
 
     }
 
+    @Transactional
     public void deleteCourseById(int id){
 
         courseRepository.deleteById(id);
 
     }
 
+    @Transactional
     public void updateCourse(Course course, int id){
 
-        Course findCourse = findCourseById(id);
-        findCourse.setCourseName(course.getCourseName());
-        findCourse.setCourseCode(course.getCourseCode());
-        findCourse.setCourseCreditScore(course.getCourseCreditScore());
-        courseRepository.save(findCourse);
+        courseRepository.update(course, id);
 
     }
 
@@ -82,21 +83,23 @@ public class CourseService {
 
     }
 
+    @Transactional
     public void setStudentOfCourse(int courseId, int studentId){
 
-        Student findStudent = studentRepository.findById(studentId).get();
+        Student findStudent = (Student) studentRepository.findById(studentId);
         Course findCourse = findCourseById(courseId);
         findCourse.getStudents().add(findStudent);
-        courseRepository.save(findCourse);
+        courseRepository.update(findCourse,courseId);
 
     }
 
+    @Transactional
     public void setInstructorOfCourse(int courseId, int instructorId){
 
-        Instructor findInstructor = instructorRepository.findById(instructorId).get();
+        Instructor findInstructor = (Instructor) instructorRepository.findById(instructorId);
         Course findCourse = findCourseById(courseId);
         findCourse.setInstructor(findInstructor);
-        courseRepository.save(findCourse);
+        courseRepository.update(findCourse, courseId);
 
     }
 
