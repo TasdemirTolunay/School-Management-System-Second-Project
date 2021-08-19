@@ -2,10 +2,9 @@ package dev.patika.schoolmanagement.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
-import org.springframework.cglib.core.KeyFactory;
+
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,7 +30,8 @@ public class Student {
     //Variables
     private String studentName;
     private LocalDate studentBirthDate;
-    private String studentGender;
+    @Enumerated(EnumType.STRING)
+    private Gender studentGender;
 
     //Relations with other classes
     @ManyToMany(mappedBy = "students")

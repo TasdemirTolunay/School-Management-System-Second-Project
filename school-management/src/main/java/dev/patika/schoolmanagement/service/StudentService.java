@@ -78,6 +78,7 @@ public class StudentService {
 
     }
 
+    @Transactional
     public void setAddressOfStudent(int studentId, int addressId){
 
         Address findAddress = (Address) addressRepository.findById(addressId);
