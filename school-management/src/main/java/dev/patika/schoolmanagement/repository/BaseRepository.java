@@ -1,8 +1,11 @@
-package dev.patika.schoolmanagement.dao;
+package dev.patika.schoolmanagement.repository;
+
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface BaseDao<T> {
+@Repository
+public interface BaseRepository<T> {
 
     List<T> findAll();
     T findById(int id);
