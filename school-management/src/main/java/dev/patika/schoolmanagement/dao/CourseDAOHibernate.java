@@ -4,6 +4,7 @@ import dev.patika.schoolmanagement.model.Course;
 import dev.patika.schoolmanagement.repository.CourseRepository;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -34,6 +35,7 @@ public class CourseDAOHibernate implements CourseRepository<Course> {
     }
 
     @Override
+    @Transactional
     public Course save(Course course) {
 
         Session session = entityManager.unwrap(Session.class);
@@ -42,6 +44,7 @@ public class CourseDAOHibernate implements CourseRepository<Course> {
     }
 
     @Override
+    @Transactional
     public void delete(Course course) {
 
         Session session = entityManager.unwrap(Session.class);
@@ -51,6 +54,7 @@ public class CourseDAOHibernate implements CourseRepository<Course> {
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
 
         Session session = entityManager.unwrap(Session.class);
@@ -60,6 +64,7 @@ public class CourseDAOHibernate implements CourseRepository<Course> {
     }
 
     @Override
+    @Transactional
     public void update(Course course, int id) {
 
         Session session = entityManager.unwrap(Session.class);

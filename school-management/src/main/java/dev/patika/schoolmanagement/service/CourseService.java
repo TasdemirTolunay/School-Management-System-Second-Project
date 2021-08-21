@@ -43,28 +43,24 @@ public class CourseService {
 
     }
 
-    @Transactional
     public Course saveCourse(Course course){
 
         return (Course) courseRepository.save(course);
 
     }
 
-    @Transactional
     public void deleteCourse(Course course){
 
         courseRepository.delete(course);
 
     }
 
-    @Transactional
     public void deleteCourseById(int id){
 
         courseRepository.deleteById(id);
 
     }
 
-    @Transactional
     public void updateCourse(Course course, int id){
 
         courseRepository.update(course, id);

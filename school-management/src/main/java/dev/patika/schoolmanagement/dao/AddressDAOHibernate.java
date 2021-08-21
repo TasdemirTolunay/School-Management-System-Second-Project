@@ -4,6 +4,7 @@ import dev.patika.schoolmanagement.model.Address;
 import dev.patika.schoolmanagement.repository.AddressRepository;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -34,6 +35,7 @@ public class AddressDAOHibernate implements AddressRepository<Address> {
     }
 
     @Override
+    @Transactional
     public Address save(Address address) {
 
         Session session = entityManager.unwrap(Session.class);
@@ -41,6 +43,7 @@ public class AddressDAOHibernate implements AddressRepository<Address> {
     }
 
     @Override
+    @Transactional
     public void delete(Address address) {
 
         Session session = entityManager.unwrap(Session.class);
@@ -50,6 +53,7 @@ public class AddressDAOHibernate implements AddressRepository<Address> {
     }
 
     @Override
+    @Transactional
     public void deleteById(int id) {
 
         Session session = entityManager.unwrap(Session.class);
@@ -59,6 +63,7 @@ public class AddressDAOHibernate implements AddressRepository<Address> {
     }
 
     @Override
+    @Transactional
     public void update(Address address, int id) {
 
         Session session = entityManager.unwrap(Session.class);

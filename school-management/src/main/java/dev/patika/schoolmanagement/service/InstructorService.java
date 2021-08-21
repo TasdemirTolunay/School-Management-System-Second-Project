@@ -37,35 +37,30 @@ public class InstructorService {
 
     }
 
-    @Transactional
     public Instructor savePermanentInstructor(PermanentInstructor instructor){
 
         return (Instructor) instructorRepository.save(instructor);
 
     }
 
-    @Transactional
     public Instructor saveVisitingInstructor(VisitingResearcher instructor){
 
         return (Instructor) instructorRepository.save(instructor);
 
     }
 
-    @Transactional
     public void updateInstructor(Instructor instructor, int id){
 
         instructorRepository.update(instructor, id);
 
     }
 
-    @Transactional
     public void deleteInstructor(Instructor instructor){
 
         instructorRepository.delete(instructor);
 
     }
 
-    @Transactional
     public void deleteInstructorById(int id){
 
         instructorRepository.deleteById(id);

@@ -38,28 +38,24 @@ public class StudentService {
 
     }
 
-    @Transactional
     public Student saveStudent(Student student){
 
         return (Student) studentRepository.save(student);
 
     }
 
-    @Transactional
     public void deleteStudent(Student student){
 
         studentRepository.delete(student);
 
     }
 
-    @Transactional
     public void deleteStudentById(int id){
 
         studentRepository.deleteById(id);
 
     }
 
-    @Transactional
     public void updateStudent(Student student, int id){
 
         studentRepository.update(student,id);
