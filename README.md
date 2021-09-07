@@ -1,6 +1,7 @@
 ## Description
 
 ---
+- The second project of Gitti Gidiyor Java Spring Bootcamp by patika.
 - Database of a school management system has been created.
 - Mysql is used as the database system.
 - The connection of the project with mysql is made using spring boot hibernate.
@@ -52,7 +53,6 @@ After Update
 
 - Data with entered values is deleted.
 
-# İkinci ödev teslim tarihi : 22 Ağustos - 23:00
-### Not : ARAŞTIRMA KONUSU kısmı tamamıyla sizleri geliştirmek amaçlı , eklenmiştir , o madde için herhangi bir kod vs örneğine ihtiyaç yoktur.
+## Second Project
 
 ![homework](https://user-images.githubusercontent.com/45206582/129493929-01f3b3a7-793f-4057-959a-ac5fb05ad8a8.png)
